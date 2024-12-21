@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <title>Today's Calendar and Clock</title>
+</head>
+
+<body>
+    <div id="calendarDisplay"></div>
+    <div id="clockDisplay"></div>
+
+    <script>
+        function showCalendar() {
+            var date = new Date();
+            var day = date.getDate();
+            var month = date.toLocaleString('default', { month: 'long' });
+            var year = date.getFullYear();
+            var dayOfWeek = date.toLocaleString('default', { weekday: 'long' });
+
+            var calendar = dayOfWeek + ", " + month + " " + day + ", " + year;
+            document.getElementById("calendarDisplay").innerHTML = calendar;
+        }
+
+        function showTime() {
+            var date = new Date();
+            var h = date.getHours();
+            var m = date.getMinutes();
+            var s = date.getSeconds();
+            var session = "AM";
+
+            if (h == 0) {
+                h = 12;
+            }
+            if (h > 12) {
+                h = h - 12;
+                session = "PM"
+            }
+            h = (h < 10) ? "0" + h : h;
+            m = (m < 10) ? "0" + m : m;
+            s = (s < 10) ? "0" + s : s;
+
+            var time = h + ":" + m + ":" + s + " " + session;
+            document.getElementById("clockDisplay").innerHTML = time;
+            setTimeout(showTime, 1000);
+        }
+
+        showCalendar();
+        showTime();
+    </script>
+</body>
+
+</html>
